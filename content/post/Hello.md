@@ -1,7 +1,7 @@
 --- 
 title: "Hello World"
 date: 07-17-2000
-draft: false
+draft: true
 ---
 
 Welcome to my site!
