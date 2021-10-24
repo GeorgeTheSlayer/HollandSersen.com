@@ -2,6 +2,6 @@
 # 	path = themes/risotto
 # 	url = https://github.com/joeroe/risotto.git
 
-[submodule "themes/risotto"]
+[submodule "themes/cactus"]
 	path = themes/cactus
 	url = https://github.com/monkeyWzr/hugo-theme-cactus
