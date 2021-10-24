@@ -1,14 +1,12 @@
 ---
-title: DAISYTUTORIAL1_Script
+title: Daisy Seed Setup Guide
 date: 2021-10-07 12:46
 
 ---
 
 # Electrosmith Daisy Seed: Getting Started  
 By Holland Sersen -
-2021-10-07
-
-TODO: Add Pictures
+10-07-2021
 
 ## Abstract
 The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded music applications. It allows for the rapid development of devices such as audio effects and synthesizers. 
@@ -16,30 +14,29 @@ The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded m
  __This tutorial will go over how to setup your Daisy and create a simple synthesizer using VS Code__
 
 ## Outline
-{{TOC}}
 
 1. [Overview](#overview):
 	1. What is the Electrosmith Daisy.
 	2. What the Daisy Can Do
-	2. Prerequisites
+	3. Prerequisites
 2. Uploading Example Code
-	1. Opening VS Code
-	2. Explaining the Code
-	3. Process Audio Block
-	4. Setup Audio Out
+	4. Opening VS Code
+	5. Explaining the Code
+	6. Process Audio Block
+	7. Setup Audio Out
 3. [Editing the Code](#editing-the-code)
-	1. The Daisy Library
-	2. Reading the library
-3. Adding Hardware to the Daisy
-	1. What Hardware pins do
-	2. What are pots and buttons
-	3. Adding a pot and a button
-4. Conclusion
+	8. The Daisy Library
+	9. Reading the library
+4. Adding Hardware to the Daisy
+	10. What Hardware pins do
+	11. What are pots and buttons
+	12. Adding a pot and a button
+5. Conclusion
 
 # Part 1: Overview
 ## What is the Electrosmith Daisy?
 **The [Electrosmith Daisy][DaisySeed] is an embedded computer made specifically for audio applications.** 
- 
+
 Pros:
 - Dedicated Audio inputs and Outputs allows for creation of synthesizers and audio effects right out of the box. 
 - Fast processor means no dropouts when preforming live. 
@@ -168,23 +165,25 @@ Links to the other file types provided below:
 
 	int main(void)
 	{
-    // initialize seed hardware and oscillator daisysp module
-    float sample_rate;
-    seed.Configure();
-    seed.Init();
-    sample_rate = seed.AudioSampleRate();
-    osc.Init(sample_rate);
+		// initialize seed hardware and oscillator daisysp module
+		float sample_rate;
+		seed.Configure();
+		seed.Init();
+		sample_rate = seed.AudioSampleRate();
+		osc.Init(sample_rate);
 
-    // Set parameters for oscillator
-    osc.SetWaveform(osc.WAVE_SIN);
-    osc.SetFreq(210);
-    osc.SetAmp(0.5);
+		// Set parameters for oscillator
+		osc.SetWaveform(osc.WAVE_SIN);
+		osc.SetFreq(210);
+		osc.SetAmp(0.5);
 
-    // start callback
-    seed.StartAudio(AudioCallback);
-    
-    while(1) {}
+		// start callback
+		seed.StartAudio(AudioCallback);
+		
+		while(1) {}
 	}
+
+Lets go through each of these one by one before editing the file. 
 
 ### Seed Object:
 	seed.Configure(); 
@@ -198,9 +197,9 @@ Links to the other file types provided below:
 	- **Anything that has to do with time in our Daisy Program will need the Sample Rate.** 
 ### Oscillator Initialization and Default Params:
 		
-		osc.Init(sample_rate);
+	osc.Init(sample_rate);
 		 
-		// Set parameters for oscillator
+	// Set parameters for oscillator
     osc.SetWaveform(osc.WAVE_SIN);
     osc.SetFreq(440);
     osc.SetAmp(0.5);
@@ -224,6 +223,7 @@ Links to the other file types provided below:
 - **This function is where the oscillator will be playing, where our audio comes in, and where it comes out making it one of the most important functions in the file.**
 
 ### Audio Callback
+
 		static void AudioCallback(AudioHandle::InterleavingInputBuffer  in, AudioHandle::InterleavingOutputBuffer out, size_t, size)             
 		{
 		    float sig;
@@ -239,7 +239,8 @@ Links to the other file types provided below:
 		        
 		    }
 		}
-- This is where the audio is processed: 
+
+- This is where the audio is processed:   
 		1. The osc object creates a sine wave.  
 		2. The [sine][Sine] wave is played through the **left** speaker.  
 		3. The [sine][Sine] wave is played through the **right** speaker.  
@@ -257,8 +258,9 @@ Now we will change the code to fit out needs. We need to change the pitch (known
 	osc.SetFreq(440);
 	osc.SetAmp(0.5);
 
-1. Go to the int main(void) function.  
-2. Change:  
+Go to the int main(void) function.  
+
+Change:  
 
 		osc.SetFreq(440);
 To 
@@ -270,10 +272,10 @@ The [frequency][Frequency] has been changed from 440 to 880. Remember that doubl
 ## Change the Amplitude
 Now let's change the amplitude
 
-1. Change:
+Change:
 
 		osc.SetAmp(0.5);
-To
+To:
 
 		osc.SetAmp(0.25);
 		
