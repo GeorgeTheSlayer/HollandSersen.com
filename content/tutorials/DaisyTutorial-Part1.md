@@ -20,17 +20,17 @@ The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded m
 	2. What the Daisy Can Do
 	3. Prerequisites
 2. Uploading Example Code
-	4. Opening VS Code
-	5. Explaining the Code
-	6. Process Audio Block
-	7. Setup Audio Out
+	1. Opening VS Code
+	2. Explaining the Code
+	3. Process Audio Block
+	4. Setup Audio Out
 3. [Editing the Code](#editing-the-code)
-	8. The Daisy Library
-	9. Reading the library
+	1. The Daisy Library
+	2. Reading the library
 4. Adding Hardware to the Daisy
-	10. What Hardware pins do
-	11. What are pots and buttons
-	12. Adding a pot and a button
+	1. What Hardware pins do
+	2. What are pots and buttons
+	3. Adding a pot and a button
 5. Conclusion
 
 # Part 1: Overview
@@ -76,8 +76,7 @@ However if you are using any of the other Electrosmith platforms then you should
 So now that we are in the folder, you can now see that the contents of this folder are all open and available to be edited in VS Code. There are multiple files here in this folder the main one we will be concerned about it the [%Example] file.
 
 **The Oscilator.cpp file defines what our microcontroller is doing.**
-
-	The Oscilator.cpp file is an ordered set of instructions for our microcontroller to process when it starts up.
+It is an ordered set of instructions for our microcontroller to process when it starts up.
 	
 For now all you need to know is that this particular program creates a simple sound (a sine wave to be exact) for us to verify that we have everything up and running.
 
