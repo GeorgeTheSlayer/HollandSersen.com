@@ -15,23 +15,35 @@ The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded m
 
 ## Outline
 
-1. [Overview](#overview):
-	1. What is the Electrosmith Daisy.
-	2. What the Daisy Can Do
-	3. Prerequisites
-2. Uploading Example Code
-	1. Opening VS Code
-	2. Explaining the Code
-	3. Process Audio Block
-	4. Setup Audio Out
-3. [Editing the Code](#editing-the-code)
-	1. The Daisy Library
-	2. Reading the library
-4. Adding Hardware to the Daisy
-	1. What Hardware pins do
-	2. What are pots and buttons
-	3. Adding a pot and a button
-5. Conclusion
+- [Electrosmith Daisy Seed: Getting Started](#electrosmith-daisy-seed-getting-started)
+	- [Abstract](#abstract)
+	- [Outline](#outline)
+- [Part 1: Overview](#part-1-overview)
+	- [What is the Electrosmith Daisy?](#what-is-the-electrosmith-daisy)
+	- [Prerequisites:](#prerequisites)
+- [Part 2: Uploading Example Code](#part-2-uploading-example-code)
+	- [Table of contents:](#table-of-contents)
+	- [Opening the Folder in VS Code](#opening-the-folder-in-vs-code)
+	- [Explaining the Code](#explaining-the-code)
+	- [Compiling the Code](#compiling-the-code)
+		- [One of the two results should occur:](#one-of-the-two-results-should-occur)
+		- [If you don't get any of these then:](#if-you-dont-get-any-of-these-then)
+	- [Uploading Code To the Daisy Seed](#uploading-code-to-the-daisy-seed)
+	- [Setup Audio Out](#setup-audio-out)
+- [Part 3: Editing the Example Code](#part-3-editing-the-example-code)
+	- [Top of the File:](#top-of-the-file)
+	- [Main Function:](#main-function)
+		- [Seed Object:](#seed-object)
+		- [Sample Rate:](#sample-rate)
+		- [Oscillator Initialization and Default Params:](#oscillator-initialization-and-default-params)
+		- [Start Audio Callback:](#start-audio-callback)
+		- [Audio Callback](#audio-callback)
+- [Editing the Code:](#editing-the-code)
+	- [Change the Frequency:](#change-the-frequency)
+	- [Change the Amplitude](#change-the-amplitude)
+	- [Uploading the Code (Again)](#uploading-the-code-again)
+- [Part 4: Adding Hardware to the Daisy Seed](#part-4-adding-hardware-to-the-daisy-seed)
+- [References](#references)
 
 # Part 1: Overview
 ## What is the Electrosmith Daisy?
@@ -55,10 +67,11 @@ For hardware all you will need is an [Electrosmith Daisy Seed][DaisySeed], a [br
 
 # Part 2: Uploading Example Code
 ## Table of contents:
-1. Opening VS Code
-2. Explaining the Code
-3. Process Audio Block
-4. Setup Audio Out 
+1. [Opening the Folder in VS Code](#opening-the-folder-in-vs-code)
+2. [Explaining the Code](#explaining-the-code)
+3. [Compiling the Code](#compiling-the-code)
+4. [Uploading Code To the Daisy Seed](#uploading-code-to-the-daisy-seed)
+5. [Setup Audio Out](#setup-audio-out) 
 
 ## Opening the Folder in VS Code
 
