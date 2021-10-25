@@ -7,7 +7,7 @@ theme = "cactus"
   colortheme = "dark" # dark, light, white, or classic
 
 # Change to be about me
-  description = "Holland Sersen is an audio programmer based in Chicago. Tell life story here"
+  description = "Holland Sersen is an interdisciplinary student who studies digital signal processing and its relation to computer science and embedded systems."
   
   mainSection = "/tutorials"
 
