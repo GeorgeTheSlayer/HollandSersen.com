@@ -13,6 +13,7 @@ The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded m
  
  __This tutorial will go over how to setup your Daisy and create a simple synthesizer using VS Code__
 
+
 ## Outline
 
 - [Electrosmith Daisy Seed: Getting Started](#electrosmith-daisy-seed-getting-started)
@@ -26,7 +27,7 @@ The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded m
 	- [Opening the Folder in VS Code](#opening-the-folder-in-vs-code)
 	- [Explaining the Code](#explaining-the-code)
 	- [Compiling the Code](#compiling-the-code)
-		- [One of the two results should occur:](#one-of-the-two-results-should-occur)
+		- [One of the three results should occur:](#one-of-the-three-results-should-occur)
 		- [If you don't get any of these then:](#if-you-dont-get-any-of-these-then)
 	- [Uploading Code To the Daisy Seed](#uploading-code-to-the-daisy-seed)
 	- [Setup Audio Out](#setup-audio-out)
@@ -75,6 +76,8 @@ For hardware all you will need is an [Electrosmith Daisy Seed][DaisySeed], a [br
 
 ## Opening the Folder in VS Code
 
+![Folder](/Img/FolderShot.png)
+
 * Open VS Code.
 * Click on File -> Open.
 * Find the Daisy Examples Folder on your computer. 
@@ -86,16 +89,16 @@ However if you are using any of the other Electrosmith platforms then you should
 
 
 ## Explaining the Code
-So now that we are in the folder, you can now see that the contents of this folder are all open and available to be edited in VS Code. There are multiple files here in this folder the main one we will be concerned about it the [%Example] file.
+So now that we are in the folder, you can now see that the contents of this folder are all open and available to be edited in VS Code. There are multiple files here in this folder the main one we will be concerned about is the Oscilator.cpp file.
 
 **The Oscilator.cpp file defines what our microcontroller is doing.**
 It is an ordered set of instructions for our microcontroller to process when it starts up.
 	
-For now all you need to know is that this particular program creates a simple sound (a sine wave to be exact) for us to verify that we have everything up and running.
+For now, all you need to know is that this particular program creates a simple sound (a sine wave to be exact) for us to verify that we have everything up and running.
 
 ## Compiling the Code
 
-Now that we have the set of instructions that we want the Daisy to execute  we now need to turn it into something that the microcontroller can read. 
+Now that we have the set of instructions that we want the Daisy to execute we now need to turn it into something that the microcontroller can read. 
 This process is called **compiling** and it is how we can turn the code from our human language to something the computer can understand.
 
 Doing this is simple, however, **this is where you can tell whether or not the daisy tool chain is setup correctly on your computer.**
@@ -103,12 +106,17 @@ Doing this is simple, however, **this is where you can tell whether or not the d
 - Then type "make" into the console.
 - Click return to enter the command into the terminal. 
 
-### One of the two results should occur:
+### One of the three results should occur:
+![Terminal Out](/Img/TerminalMake.png)
 1. The Terminal will show the memory usage of the code: 
 	- This means it compiled correctly and you installed the tool chains right too.
-2. The Terminal say "nothing to be done for all". 
+
+![Nothing to be done](/Img/NothingToBeDoneMake.png)
+1. The Terminal say "nothing to be done for all". 
 	- This means the code has already been compiled. It just needs to be uploaded to the Daisy. 	 
-3. Or an error message about the code appears 
+  
+![Fix the Error](/Img/FixErrorMake.png)
+1. Or an error message about the code appears 
 	- Fix the line it tells you. Save it, and then type make and it should work. 
 
 ### If you don't get any of these then:
