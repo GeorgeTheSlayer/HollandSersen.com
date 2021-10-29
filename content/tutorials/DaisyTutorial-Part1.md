@@ -27,7 +27,8 @@ The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded m
 	- [Opening the Folder in VS Code](#opening-the-folder-in-vs-code)
 	- [Explaining the Code](#explaining-the-code)
 	- [Compiling the Code](#compiling-the-code)
-		- [One of the three results should occur:](#one-of-the-three-results-should-occur)
+		- [One of two results should occur:](#one-of-two-results-should-occur)
+		- [If neither of the outputs above appear but this does](#if-neither-of-the-outputs-above-appear-but-this-does)
 		- [If you don't get any of these then:](#if-you-dont-get-any-of-these-then)
 	- [Uploading Code To the Daisy Seed](#uploading-code-to-the-daisy-seed)
 	- [Setup Audio Out](#setup-audio-out)
@@ -106,18 +107,21 @@ Doing this is simple, however, **this is where you can tell whether or not the d
 - Then type "make" into the console.
 - Click return to enter the command into the terminal. 
 
-### One of the three results should occur:
+### One of two results should occur:
 ![Terminal Out](/Img/TerminalMake.png)
-1. The Terminal will show the memory usage of the code: 
+- The Terminal will show the memory usage of the code: 
 	- This means it compiled correctly and you installed the tool chains right too.
 
 ![Nothing to be done](/Img/NothingToBeDoneMake.png)
-1. The Terminal say "nothing to be done for all". 
+- The Terminal say "nothing to be done for all". 
 	- This means the code has already been compiled. It just needs to be uploaded to the Daisy. 	 
   
+### If neither of the outputs above appear but this does
 ![Fix the Error](/Img/FixErrorMake.png)
-1. Or an error message about the code appears 
-	- Fix the line it tells you. Save it, and then type make and it should work. 
+- This means there is an error somewhere in your code
+	- Fix the line of code that the terminal says is wrong
+	- Save it
+	- Then compile it again but typing make
 
 ### If you don't get any of these then:
 * Make sure the tool chains are all properly installed. 
