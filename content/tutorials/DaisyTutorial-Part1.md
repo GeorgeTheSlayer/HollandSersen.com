@@ -9,16 +9,16 @@ By Holland Sersen -
 10-07-2021
 
 ## Abstract
-The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded music applications. It allows for the rapid development of devices such as audio effects and synthesizers. 
+The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipedia.org/wiki/Microprocessor) made for [embedded](https://en.wikipedia.org/wiki/Embedded_system) music applications. It allows for the rapid development of devices such as audio effects and synthesizers. 
  
  __This tutorial will go over how to setup your Daisy and create a simple synthesizer using VS Code__
 
 
-## Outline
+## Table Of Contents (For Reference)
 
 - [Electrosmith Daisy Seed: Getting Started](#electrosmith-daisy-seed-getting-started)
 	- [Abstract](#abstract)
-	- [Outline](#outline)
+	- [Table Of Contents (For Reference)](#table-of-contents-for-reference)
 - [Part 1: Overview](#part-1-overview)
 	- [What is the Electrosmith Daisy?](#what-is-the-electrosmith-daisy)
 	- [Prerequisites:](#prerequisites)
@@ -27,9 +27,9 @@ The [Electrosmith Daisy Seed][DaisySeed] is a microprocessor made for embedded m
 	- [Opening the Folder in VS Code](#opening-the-folder-in-vs-code)
 	- [Explaining the Code](#explaining-the-code)
 	- [Compiling the Code](#compiling-the-code)
-		- [One of two results should occur:](#one-of-two-results-should-occur)
-		- [If neither of the outputs above appear but this does](#if-neither-of-the-outputs-above-appear-but-this-does)
-		- [If you don't get any of these then:](#if-you-dont-get-any-of-these-then)
+		- [One of Two Results Should Occur:](#one-of-two-results-should-occur)
+		- [If Neither of the Outputs Above Appear But This Does](#if-neither-of-the-outputs-above-appear-but-this-does)
+		- [If You Don't Get Any of These Then:](#if-you-dont-get-any-of-these-then)
 	- [Uploading Code To the Daisy Seed](#uploading-code-to-the-daisy-seed)
 	- [Setup Audio Out](#setup-audio-out)
 - [Part 3: Editing the Example Code](#part-3-editing-the-example-code)
@@ -57,15 +57,30 @@ Pros:
 - Plenty of IO allows for projects with many knobs, buttons and screens to be created without another board.  
 
 Cons:
-- Price, however with how much it comes with audio that is debatable.
+- $30 is a lot for a part.
 - No reason to use unless you are using audio in or out.
 
+This product is one of the best solutions for making music related projects, like synthesizers or audio effects.  
+**I would not recommend this product for things that have nothing to do with audio.**   
+A good alternative would be the [Ardiuno Uno](https://store-usa.arduino.cc/products/arduino-uno-rev3?selectedStore=us) or [Rasberry Pi](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/). 
 
 ## Prerequisites:
-Since this is for beginners the tutorials won't go into advanced [C++][Cpp] coding or hardware design, however links for you to explore those topics on your own will be included in the description below.  
-This also will not go into any [DSP][DSP] or physics however links will be provided to further knowledge on these subjects.   
-For software you will need [VS Code](https://code.visualstudio.com), the Daisy Tool Chains installed on your computer, and the Daisy Examples Repository.   
-For hardware all you will need is an [Electrosmith Daisy Seed][DaisySeed], a [breadboard](https://www.amazon.com/BB830-Solderless-Plug-BreadBoard-tie-Points/dp/B0040Z4QN8/ref=sr_1_19?dchild=1&keywords=breadboard&qid=1634682261&sr=8-19) (get a nice one, trust me it is worth it), a [micro usb cable](https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z/ref=sr_1_3?dchild=1&keywords=micro+usb&qid=1634682300&sr=8-3), an [audio jack](https://www.amazon.com/Honbay-Socket-Stratocaster-Replacement-Electric/dp/B01M0IQ5QI/ref=sr_1_1?crid=L6JVSNGFO20R&dchild=1&keywords=1%2F4+jack&qid=1634682366&sprefix=1%2F4%2Caps%2C174&sr=8-1), two 10k potentiometers, a [button](https://www.amazon.com/Cylewet-Momentary-Button-Switch-CYT1078/dp/B0752RMB7Q/ref=sr_1_4?crid=10ONVMUKMJFGL&dchild=1&keywords=button+electronic&qid=1634682399&sprefix=button+elec%2Caps%2C180&sr=8-4) and some [wires](https://www.amazon.com/TUOFENG-Wire-Solid-different-colored-spools/dp/B07TX6BX47/ref=sr_1_8?dchild=1&keywords=breadboard+wires&qid=1634682429&sr=8-8). 
+Since this is for beginners the tutorials won't go into advanced [C++][Cpp] coding or hardware design. However, links for you to explore those topics on your own will be included in the description below.  
+This tutorial will not go into any [DSP][DSP] or physics however links will be provided to further knowledge on these subjects.   
+
+For software you will need: 
+- [VS Code](https://code.visualstudio.com),
+- The [Daisy Tool Chains](https://github.com/electro-smith/DaisyToolchain) 
+- The [Daisy Examples Repository](https://github.com/electro-smith/DaisyExamples)
+     
+For Hardware you will need:
+- [Electrosmith Daisy Seed][DaisySeed]
+- [One Breadboard](https://www.amazon.com/BB830-Solderless-Plug-BreadBoard-tie-Points/dp/B0040Z4QN8/ref=sr_1_19?dchild=1&keywords=breadboard&qid=1634682261&sr=8-19) (get a nice one, trust me it's worth it)
+- [One Micro Usb Cable](https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z/ref=sr_1_3?dchild=1&keywords=micro+usb&qid=1634682300&sr=8-3)
+- [One Audio Jack](https://www.amazon.com/Honbay-Socket-Stratocaster-Replacement-Electric/dp/B01M0IQ5QI/ref=sr_1_1?crid=L6JVSNGFO20R&dchild=1&keywords=1%2F4+jack&qid=1634682366&sprefix=1%2F4%2Caps%2C174&sr=8-1)
+- Two 10k potentiometers,
+- [One Button](https://www.amazon.com/Cylewet-Momentary-Button-Switch-CYT1078/dp/B0752RMB7Q/ref=sr_1_4?crid=10ONVMUKMJFGL&dchild=1&keywords=button+electronic&qid=1634682399&sprefix=button+elec%2Caps%2C180&sr=8-4) 
+- [An Assortment of Wires](https://www.amazon.com/TUOFENG-Wire-Solid-different-colored-spools/dp/B07TX6BX47/ref=sr_1_8?dchild=1&keywords=breadboard+wires&qid=1634682429&sr=8-8). 
 
 # Part 2: Uploading Example Code
 ## Table of contents:
@@ -92,8 +107,8 @@ However if you are using any of the other Electrosmith platforms then you should
 ## Explaining the Code
 So now that we are in the folder, you can now see that the contents of this folder are all open and available to be edited in VS Code. There are multiple files here in this folder the main one we will be concerned about is the Oscilator.cpp file.
 
-**The Oscilator.cpp file defines what our microcontroller is doing.**
-It is an ordered set of instructions for our microcontroller to process when it starts up.
+**The Oscilator.cpp file defines what our Daisy is doing.**
+It is an ordered set of instructions for our Daisy to process when it starts up.
 	
 For now, all you need to know is that this particular program creates a simple sound (a sine wave to be exact) for us to verify that we have everything up and running.
 
@@ -107,23 +122,63 @@ Doing this is simple, however, **this is where you can tell whether or not the d
 - Then type "make" into the console.
 - Click return to enter the command into the terminal. 
 
-### One of two results should occur:
-![Terminal Out](/Img/TerminalMake.png)
+### One of Two Results Should Occur:
+[comment]: <> (![Terminal Out](/Img/TerminalMake.png))
+
+```console
+Hollands-MacBook-Pro:oscillator hollandsersen$ make
+arm-none-eabi-g++  -c -mcpu=cortex-m7 -mthumb -mfpu=fpv5-d16 -mfloat-abi=hard  -DUSE_HAL_DRIVER -DSTM32H750xx -DHSE_VALUE=16000000  -DCORE_CM7 -DSTM32H750IB -DARM_MATH_CM7 -DUSE_FULL_LL_DRIVER -include stm32h7xx.h -I../../libdaisy -I../../libdaisy/src/ -I../../libdaisy/src/sys -I../../libdaisy/src/usbd -I../../libdaisy/Drivers/CMSIS/Include/ -I../../libdaisy/Drivers/CMSIS/DSP/Include -I../../libdaisy/Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../libdaisy/Drivers/STM32H7xx_HAL_Driver/Inc/ -I../../libdaisy/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../../libdaisy/core/ -I../../DaisySP/Source -I../../libdaisy/Middlewares/Third_Party/FatFs/src -O2 -Wall -Wno-missing-attributes -fasm -fdata-sections -ffunction-sections -Wno-stringop-overflow -g -ggdb -MMD -MP -MF"build/oscillator.d" -fno-exceptions -fasm -finline -finline-functions-called-once -fshort-enums -fno-move-loop-invariants -fno-unwind-tables -Wno-register -std=gnu++14 -Wa,-a,-ad,-alms=build/oscillator.lst oscillator.cpp -o build/oscillator.o
+arm-none-eabi-g++  build/startup_stm32h750xx.o build/oscillator.o   -mcpu=cortex-m7 -mthumb -mfpu=fpv5-d16 -mfloat-abi=hard --specs=nano.specs --specs=nosys.specs -T../../libdaisy/core/STM32H750IB_flash.lds -L../../libdaisy/build -L ../../DaisySP/build -ldaisy -lc -lm -lnosys -ldaisysp -Wl,-Map=build/oscillator.map,--cref -Wl,--gc-sections -Wl,--print-memory-usage -o build/oscillator.elf
+Memory region         Used Size  Region Size  %age Used
+           FLASH:       42740 B       128 KB     32.61%
+         DTCMRAM:          0 GB       128 KB      0.00%
+            SRAM:        5076 B       512 KB      0.97%
+          RAM_D2:         16 KB       288 KB      5.56%
+          RAM_D3:          0 GB        64 KB      0.00%
+         ITCMRAM:          0 GB        64 KB      0.00%
+           SDRAM:          0 GB        64 MB      0.00%
+       QSPIFLASH:          0 GB         8 MB      0.00%
+arm-none-eabi-objcopy -O ihex build/oscillator.elf build/oscillator.hex
+arm-none-eabi-objcopy -O binary -S build/oscillator.elf build/oscillator.bin
+Hollands-MacBook-Pro:oscillator hollandsersen$ 
+```
+
 - The Terminal will show the memory usage of the code: 
 	- This means it compiled correctly and you installed the tool chains right too.
 
-![Nothing to be done](/Img/NothingToBeDoneMake.png)
+[comment]: <> (![Nothing to be done](/Img/NothingToBeDoneMake.png))
+
+```console
+Hollands-MacBook-Pro:oscillator hollandsersen$ make
+make: Nothing to be done for `all'.
+```
+
 - The Terminal say "nothing to be done for all". 
 	- This means the code has already been compiled. It just needs to be uploaded to the Daisy. 	 
   
-### If neither of the outputs above appear but this does
-![Fix the Error](/Img/FixErrorMake.png)
+### If Neither of the Outputs Above Appear But This Does
+[comment]: <> (![Fix the Error](/Img/FixErrorMake.png))
+
+```console
+Hollands-MacBook-Pro:oscillator hollandsersen$ make
+arm-none-eabi-g++  -c -mcpu=cortex-m7 -mthumb -mfpu=fpv5-d16 -mfloat-abi=hard  -DUSE_HAL_DRIVER -DSTM32H750xx -DHSE_VALUE=16000000  -DCORE_CM7 -DSTM32H750IB -DARM_MATH_CM7 -DUSE_FULL_LL_DRIVER -include stm32h7xx.h -I../../libdaisy -I../../libdaisy/src/ -I../../libdaisy/src/sys -I../../libdaisy/src/usbd -I../../libdaisy/Drivers/CMSIS/Include/ -I../../libdaisy/Drivers/CMSIS/DSP/Include -I../../libdaisy/Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../libdaisy/Drivers/STM32H7xx_HAL_Driver/Inc/ -I../../libdaisy/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../../libdaisy/core/ -I../../DaisySP/Source -I../../libdaisy/Middlewares/Third_Party/FatFs/src -O2 -Wall -Wno-missing-attributes -fasm -fdata-sections -ffunction-sections -Wno-stringop-overflow -g -ggdb -MMD -MP -MF"build/oscillator.d" -fno-exceptions -fasm -finline -finline-functions-called-once -fshort-enums -fno-move-loop-invariants -fno-unwind-tables -Wno-register -std=gnu++14 -Wa,-a,-ad,-alms=build/oscillator.lst oscillator.cpp -o build/oscillator.o
+oscillator.cpp: In function 'int main()':
+oscillator.cpp:47:15: error: expected '}' at end of input
+   47 |     while(1) {}
+      |               ^
+oscillator.cpp:29:1: note: to match this '{'
+   29 | {
+      | ^
+make: *** [build/oscillator.o] Error 1
+Hollands-MacBook-Pro:oscillator hollandsersen$ 
+```
+
 - This means there is an error somewhere in your code
 	- Fix the line of code that the terminal says is wrong
 	- Save it
-	- Then compile it again but typing make
+	- Then compile it again by typing make
 
-### If you don't get any of these then:
+### If You Don't Get Any of These Then:
 * Make sure the tool chains are all properly installed. 
 	* [This video by Electrosmith shows how to install the toolchains properly.](https://www.youtube.com/watch?v=e4KaBs6qSkU&t=599s) 
 	* [The GitHub also has a good tutorial located here.][DaisyWIKI]
@@ -161,19 +216,23 @@ Links to [C++][Cpp] tutorials are provided below:
 The Oscilator.cpp file is where all of our [Digital Signal Processing][DSP] will be done. So this tutorial will focus mainly on this file. 
 
 Links to the other file types provided below:
-- Make
-- VS Code config files
+- [Make](https://opensource.com/article/18/8/what-how-makefile)
+- [VS Code config files](https://opensource.com/article/18/8/what-how-makefile)
 
 ## Top of the File:
-	#include "daisysp.h"
-	#include "daisy_seed.h"
 
-	using namespace daisysp;
-	using namespace daisy;
+```Cpp
+#include "daisysp.h"
+#include "daisy_seed.h"
 
-	static DaisySeed  seed;
-	static Oscillator osc;
-**The top section of your program is usually dedicated to linking the libraries and creating the objects to be sued throughout the file.**
+using namespace daisysp;
+using namespace daisy;
+
+static DaisySeed  seed;
+static Oscillator osc;
+```
+
+**The top section of your program is usually dedicated to linking the libraries and creating the objects to be used throughout the file.**
 - The include statements link the Daisy Library to the program itself.
 - Using namespace allows us to not have to type daisy:: or daisysp:: before every function/object in the Daisy Library. 
 - Static DaisySeed is an object meant to handle the hardware.
@@ -187,46 +246,59 @@ Links to the other file types provided below:
 
 **The Main Function is used primarily for initializing objects and variables to be used in the seed.StartAudio(AudioCallback) function.** 
 
-	int main(void)
-	{
-		// initialize seed hardware and oscillator daisysp module
-		float sample_rate;
-		seed.Configure();
-		seed.Init();
-		sample_rate = seed.AudioSampleRate();
-		osc.Init(sample_rate);
+```Cpp
+int main(void)
+{
+	// initialize seed hardware and oscillator daisysp module
+	float sample_rate;
+	seed.Configure();
+	seed.Init();
+	sample_rate = seed.AudioSampleRate();
+	osc.Init(sample_rate);
 
-		// Set parameters for oscillator
-		osc.SetWaveform(osc.WAVE_SIN);
-		osc.SetFreq(210);
-		osc.SetAmp(0.5);
+	// Set parameters for oscillator
+	osc.SetWaveform(osc.WAVE_SIN);
+	osc.SetFreq(210);
+	osc.SetAmp(0.5);
 
-		// start callback
-		seed.StartAudio(AudioCallback);
-		
-		while(1) {}
-	}
+	// start callback
+	seed.StartAudio(AudioCallback);
+	
+	while(1) {}
+}
+```
 
 Lets go through each of these one by one before editing the file. 
 
 ### Seed Object:
+
+```Cpp
 	seed.Configure(); 
 	seed.Init();
+```
+
 - Both functions initialize the hardware.
 	- This allows for a default state to be created for the hardware which helps with preventing glitches. 
 ### Sample Rate:
+
+```Cpp
 	float sample_rate;
 	sample_rate = seed.AudioSampleRate();
+```
+
 - [Sample rate](https://en.wikipedia.org/wiki/Sampling) needs to be initialized for use within objects like the oscillator object. 
 	- **Anything that has to do with time in our Daisy Program will need the Sample Rate.** 
 ### Oscillator Initialization and Default Params:
+	
+```Cpp
+// Initialize 
+osc.Init(sample_rate);
 		
-	osc.Init(sample_rate);
-		 
-	// Set parameters for oscillator
-    osc.SetWaveform(osc.WAVE_SIN);
-    osc.SetFreq(440);
-    osc.SetAmp(0.5);
+// Set parameters for oscillator
+osc.SetWaveform(osc.WAVE_SIN);
+osc.SetFreq(440);
+osc.SetAmp(0.5);
+```
 	
 - Creates a default state for the oscillator object while also passing in the sample rate. 
 	- Set Waveform sets what type of sound the oscillator will play.
@@ -241,28 +313,34 @@ Lets go through each of these one by one before editing the file.
 - Amplitude
 - Frequency 
 ### Start Audio Callback:
+
+```Cpp
     // Start callback
     seed.StartAudio(AudioCallback);
+```
+
 - The program then runs the Start Audio function defined in the middle of the file.
 - **This function is where the oscillator will be playing, where our audio comes in, and where it comes out making it one of the most important functions in the file.**
 
 ### Audio Callback
 
-		static void AudioCallback(AudioHandle::InterleavingInputBuffer  in, AudioHandle::InterleavingOutputBuffer out, size_t, size)             
-		{
-		    float sig;
-		    for(size_t i = 0; i < size; i += 2)
-		    {
-		        sig = osc.Process();
+```Cpp
+static void AudioCallback(AudioHandle::InterleavingInputBuffer  in, AudioHandle::InterleavingOutputBuffer out, size_t, size)             
+{
+	float sig;
+	for(size_t i = 0; i < size; i += 2)
+	{
+		sig = osc.Process();
+
+		// left out
+		out[i] = sig;
+
+		// right out
+		out[i + 1] = sig;
 		
-		        // left out
-		        out[i] = sig;
-		
-		        // right out
-		        out[i + 1] = sig;
-		        
-		    }
-		}
+	}
+}
+```
 
 - This is where the audio is processed:   
 		1. The osc object creates a sine wave.  
@@ -277,19 +355,23 @@ Now we will change the code to fit out needs. We need to change the pitch (known
  
  First let's change the [frequency][Frequency] of the oscillator.   
 
-	// Set parameters for oscillator
-	osc.SetWaveform(osc.WAVE_SIN);
-	osc.SetFreq(440);
-	osc.SetAmp(0.5);
+```Cpp
+// Set parameters for oscillator
+osc.SetWaveform(osc.WAVE_SIN);
+osc.SetFreq(440);
+osc.SetAmp(0.5);
+```
 
 Go to the int main(void) function.  
 
 Change:  
-
-		osc.SetFreq(440);
+```Cpp
+osc.SetFreq(440);
+```
 To 
-		
-		osc.SetFreq(880);
+```Cpp
+osc.SetFreq(880);
+```
 
 The [frequency][Frequency] has been changed from 440 to 880. Remember that doubling the [frequency][Frequency] will increase the perceived note by one [octave](https://en.wikipedia.org/wiki/Octave). **So this will create a new note one [octave](https://en.wikipedia.org/wiki/Octave) higher than before.** 
 
@@ -297,11 +379,14 @@ The [frequency][Frequency] has been changed from 440 to 880. Remember that doubl
 Now let's change the amplitude
 
 Change:
-
-		osc.SetAmp(0.5);
+```Cpp
+osc.SetAmp(0.5);
+```
 To:
 
-		osc.SetAmp(0.25);
+```Cpp
+osc.SetAmp(0.25);
+```
 		
 What this will do is decrease the volume of the waveform to half of what the waveform was before.  
 
@@ -332,18 +417,6 @@ TODO Next week
 [Amplitude]: https://en.wikipedia.org/wiki/Amplitude
 [Sine]: https://en.wikipedia.org/wiki/Sine_wave
 [DaisySeed]: https://www.electro-smith.com/daisy/daisy
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
