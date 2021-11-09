@@ -13,6 +13,11 @@ The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipe
  
  __This tutorial will go over how to setup your Daisy and create a simple synthesizer using VS Code__
 
+ **PLEASE NOTE:** This tutorial was made for Mac. This means the following:
+ - __Return__ is equivalent to __Enter__ on Windows. 
+ - __Command (CMD)__ on mac is equivalent to __CTRL__.
+ - **Console Commands may be different on Windows.**
+
 
 ## Table Of Contents (For Reference)
 
@@ -202,6 +207,21 @@ The terminal should show the erasing of old code and the new code being uploaded
 
 ## Setup Audio Out
 TODO **Work on later, concentrate on getting working code.** 
+
+Now we need to get audio from the Daisy. We will do this by creating a simple circuit:
+- Plug the Daisy Seed anywhere on your breadboard
+  - Make sure that all pins go into the breadboard fully.
+- Plug the Aground pin into the "-" terminal.
+- Plug the Dground pin into the "-" as well.
+  - This will insure the Daisy is grounded with the rest of our circuit. 
+- Next get your audio jack.
+- Identify which terminal is "tip"
+- Connect tip to the "Audio Out 1 Pin" (TODO Add pictures and pin number)
+- Identify which terminal is "Ring"
+- Connect ring to the "-" terminal of the breadboard
+
+Now if you connect the Daisy Via Usb you should hear a simple sine wave coming from the device. 
+
 
 # Part 3: Editing the Example Code
 This section will be dedicated to showing what the [C++][Cpp] file is doing and how to go about editing it. This section will go over some of the basics of [Digital Signal Processing][DSP]. However, basic [C++][Cpp] knowledge is required.  
@@ -398,12 +418,31 @@ Finally let's upload the code to the [Daisy Seed][DaisySeed].
 - Verify that no errors occurred 
 - Connect the [Daisy Seed][DaisySeed] via micro USB
 - Hold the boot button and then click reset to let the daisy accept uploads.
-- Enter "make program-dfu" into your terminal
+- Enter __"make program-dfu"__ into your terminal
 - Verify that no errors occurred
 
 Now your Daisy should be playing a pitch one octave higher at half the original volume.
 
 # Part 4: Adding Hardware to the Daisy Seed
+
+Finally let's add a knob and a button so we can control the Daisy. We will set the knob to control the pitch of the Oscillator and a knob to control its amplitude. 
+
+## A Foreword Before we Continue (You can skip this if you want)
+Without bumbling on for too long before we continue I want you to know that **this section is the main reason why I made this tutorial.** When I first got the seed I was amazed at how easy it was to program, yet baffled by the fact that in the documentation it did not mention how to even wire up an audio output. **It took me close to a week to figure that out and another week just trying to get a led to work.** I spent so much time looking through the documentation and examples just to find something. Mind you this platform was advertised to people like me, people who have never programmed or used a microcontroller like Arduino and yet getting audio at from it was near impossible at the time.  
+
+Now yes, **the documentation for the Daisy has improved**. The tutorials on YouTube on how to install the toolchains are really good at helping people get their feet wet, however they haven't yet addressed a core issue which is "what the code is actually doing". As a user you just have to trust that everything just works, which is great for something like Pure Data or Max, but for C++ this prevents you from making anything that is really your own. In my opinion (and I say this having no idea what happens internally in Electrosmith or their philosophy) I think that the Daisy platform and it libraries should be a good starting place not some end all be all professional suite of software tools.  
+
+**If you are a developer then chances are you already have your own library of DSP modules and if you are a beginner your priority should be on learning how to create your own set of software tools.** I think the Daisy has the unique option of catering to both types of people while concentrating more on the little guy. 
+
+These are my suggestions (however Electrosmith is a small company so who knows if they will implement this):
+- Documentation on the DaisySp website that includes hardware
+- In Depth documentation on some of the "important" classes (OSC, ADSR, filter, etc) 
+- Simple but useful circuits for the Daisy Seed. 
+
+
+## Adding Hardware in Code. 
+
+
 TODO Next week
 
 
