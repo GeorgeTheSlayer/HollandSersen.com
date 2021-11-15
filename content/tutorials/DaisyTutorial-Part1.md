@@ -1,12 +1,11 @@
 ---
-title: Daisy Seed Setup Guide
+author: Holland
+title: Getting Started with the Electrosmith Daisy Seed Part 1
 date: 2021-10-07 12:46
-
+description: 
 ---
 
-# Electrosmith Daisy Seed: Getting Started  
-By Holland Sersen -
-10-07-2021
+
 
 ## Abstract
 The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipedia.org/wiki/Microprocessor) made for [embedded](https://en.wikipedia.org/wiki/Embedded_system) music applications. It allows for the rapid development of devices such as audio effects and synthesizers. 
@@ -21,9 +20,6 @@ The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipe
 
 ## Table Of Contents (For Reference)
 
-- [Electrosmith Daisy Seed: Getting Started](#electrosmith-daisy-seed-getting-started)
-	- [Abstract](#abstract)
-	- [Table Of Contents (For Reference)](#table-of-contents-for-reference)
 - [Part 1: Overview](#part-1-overview)
 	- [What is the Electrosmith Daisy?](#what-is-the-electrosmith-daisy)
 	- [Prerequisites:](#prerequisites)
@@ -50,6 +46,7 @@ The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipe
 	- [Change the Amplitude](#change-the-amplitude)
 	- [Uploading the Code (Again)](#uploading-the-code-again)
 - [Part 4: Adding Hardware to the Daisy Seed](#part-4-adding-hardware-to-the-daisy-seed)
+	- [Adding Hardware in Code.](#adding-hardware-in-code)
 - [References](#references)
 
 # Part 1: Overview
@@ -75,15 +72,15 @@ This tutorial will not go into any [DSP][DSP] or physics however links will be p
 
 For software you will need: 
 - [VS Code](https://code.visualstudio.com),
-- The [Daisy Tool Chains](https://github.com/electro-smith/DaisyToolchain) 
-- The [Daisy Examples Repository](https://github.com/electro-smith/DaisyExamples)
+- [The Daisy Tool Chains](https://github.com/electro-smith/DaisyToolchain) 
+- [The Daisy Examples Repository](https://github.com/electro-smith/DaisyExamples)
      
 For Hardware you will need:
 - [Electrosmith Daisy Seed][DaisySeed]
 - [One Breadboard](https://www.amazon.com/BB830-Solderless-Plug-BreadBoard-tie-Points/dp/B0040Z4QN8/ref=sr_1_19?dchild=1&keywords=breadboard&qid=1634682261&sr=8-19) (get a nice one, trust me it's worth it)
 - [One Micro Usb Cable](https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z/ref=sr_1_3?dchild=1&keywords=micro+usb&qid=1634682300&sr=8-3)
 - [One Audio Jack](https://www.amazon.com/Honbay-Socket-Stratocaster-Replacement-Electric/dp/B01M0IQ5QI/ref=sr_1_1?crid=L6JVSNGFO20R&dchild=1&keywords=1%2F4+jack&qid=1634682366&sprefix=1%2F4%2Caps%2C174&sr=8-1)
-- Two 10k potentiometers,
+- Two 10k potentiometers
 - [One Button](https://www.amazon.com/Cylewet-Momentary-Button-Switch-CYT1078/dp/B0752RMB7Q/ref=sr_1_4?crid=10ONVMUKMJFGL&dchild=1&keywords=button+electronic&qid=1634682399&sprefix=button+elec%2Caps%2C180&sr=8-4) 
 - [An Assortment of Wires](https://www.amazon.com/TUOFENG-Wire-Solid-different-colored-spools/dp/B07TX6BX47/ref=sr_1_8?dchild=1&keywords=breadboard+wires&qid=1634682429&sr=8-8). 
 
@@ -99,11 +96,11 @@ For Hardware you will need:
 
 ![Folder](/Img/FolderShot.png)
 
-* Open VS Code.
-* Click on File -> Open.
-* Find the Daisy Examples Folder on your computer. 
-* Click on the Folder Seed -> Oscillator
-* Open the Folder.
+1. Open VS Code.
+2. Click on File -> Open.
+3. Find the Daisy Examples Folder on your computer. 
+4. Click on the Folder Seed -> Oscillator
+5. Open the Folder.
 
 In the Daisy Examples Folder you will see a couple other folders labeled seed, pod, patch and petal. In this tutorial we will be using the daisy seed, so we will be using the examples provided in the seed folder.
 However if you are using any of the other Electrosmith platforms then you should go into the corresponding folder for said platform.
@@ -123,9 +120,9 @@ Now that we have the set of instructions that we want the Daisy to execute we no
 This process is called **compiling** and it is how we can turn the code from our human language to something the computer can understand.
 
 Doing this is simple, however, **this is where you can tell whether or not the daisy tool chain is setup correctly on your computer.**
-- Click on the terminal button on the bottom right of VS Code. (This should open up a dedicated terminal for you to type in.) 
-- Then type "make" into the console.
-- Click return to enter the command into the terminal. 
+1. Click on the terminal button on the bottom right of VS Code. (This should open up a dedicated terminal for you to type in.) 
+2. Then type "make" into the console.
+3. Click return to enter the command into the terminal. 
 
 ### One of Two Results Should Occur:
 [comment]: <> (![Terminal Out](/Img/TerminalMake.png))
@@ -148,8 +145,8 @@ arm-none-eabi-objcopy -O binary -S build/oscillator.elf build/oscillator.bin
 Hollands-MacBook-Pro:oscillator hollandsersen$ 
 ```
 
-- The Terminal will show the memory usage of the code: 
-	- This means it compiled correctly and you installed the tool chains right too.
+The Terminal will show the memory usage of the code: 
+- This means it compiled correctly and you installed the tool chains right too.
 
 [comment]: <> (![Nothing to be done](/Img/NothingToBeDoneMake.png))
 
@@ -158,8 +155,8 @@ Hollands-MacBook-Pro:oscillator hollandsersen$ make
 make: Nothing to be done for `all'.
 ```
 
-- The Terminal say "nothing to be done for all". 
-	- This means the code has already been compiled. It just needs to be uploaded to the Daisy. 	 
+The Terminal say "nothing to be done for all". 
+- This means the code has already been compiled. It just needs to be uploaded to the Daisy. 	 
   
 ### If Neither of the Outputs Above Appear But This Does
 [comment]: <> (![Fix the Error](/Img/FixErrorMake.png))
@@ -178,17 +175,17 @@ make: *** [build/oscillator.o] Error 1
 Hollands-MacBook-Pro:oscillator hollandsersen$ 
 ```
 
-- This means there is an error somewhere in your code
-	- Fix the line of code that the terminal says is wrong
-	- Save it
-	- Then compile it again by typing make
+This means there is an error somewhere in your code:
+1. Fix the line of code that the terminal says is wrong
+2. Save it
+3. Then compile it again by typing make
 
 ### If You Don't Get Any of These Then:
-* Make sure the tool chains are all properly installed. 
-	* [This video by Electrosmith shows how to install the toolchains properly.](https://www.youtube.com/watch?v=e4KaBs6qSkU&t=599s) 
-	* [The GitHub also has a good tutorial located here.][DaisyWIKI]
-* Check that the Daisy Library is compiled. 
-	* [The Electrosmith GitHub describes it here.][DaisyEX]
+1. Make sure the tool chains are all properly installed. 
+	- [This video by Electrosmith shows how to install the toolchains properly.](https://www.youtube.com/watch?v=e4KaBs6qSkU&t=599s) 
+	- [The GitHub also has a good tutorial located here.][DaisyWIKI]
+2. Check that the Daisy Library is compiled. 
+	- [The Electrosmith GitHub describes it here.][DaisyEX]
 
 
 ## Uploading Code To the Daisy Seed
@@ -209,16 +206,16 @@ The terminal should show the erasing of old code and the new code being uploaded
 TODO **Work on later, concentrate on getting working code.** 
 
 Now we need to get audio from the Daisy. We will do this by creating a simple circuit:
-- Plug the Daisy Seed anywhere on your breadboard
+1. Plug the Daisy Seed anywhere on your breadboard
   - Make sure that all pins go into the breadboard fully.
-- Plug the Aground pin into the "-" terminal.
-- Plug the Dground pin into the "-" as well.
+2. Plug the Aground pin into the "-" terminal.
+3. Plug the Dground pin into the "-" as well.
   - This will insure the Daisy is grounded with the rest of our circuit. 
-- Next get your audio jack.
-- Identify which terminal is "tip"
-- Connect tip to the "Audio Out 1 Pin" (TODO Add pictures and pin number)
-- Identify which terminal is "Ring"
-- Connect ring to the "-" terminal of the breadboard
+4. Next get your audio jack.
+5. Identify which terminal is "tip"
+6. Connect tip to the "Audio Out 1 Pin" (TODO Add pictures and pin number)
+7. Identify which terminal is "Ring"
+8. Connect ring to the "-" terminal of the breadboard
 
 Now if you connect the Daisy Via Usb you should hear a simple sine wave coming from the device. 
 
@@ -288,7 +285,7 @@ int main(void)
 }
 ```
 
-Lets go through each of these one by one before editing the file. 
+Let's go through each of these one by one before editing the file. 
 
 ### Seed Object:
 
@@ -323,12 +320,12 @@ osc.SetAmp(0.5);
 - Creates a default state for the oscillator object while also passing in the sample rate. 
 	- Set Waveform sets what type of sound the oscillator will play.
 		- Currently the waveform is set to a [Sine Wave][Sine].
-	- Set Freq sets the pitch of the oscillator.
+	- osc.SetFreq() sets the pitch of the oscillator.
 		- The pitch of an oscillator is known as its [frequency][Frequency].
 	- Set Amp sets how loud the oscillator is.
 		- The loudness of a waveform is known as it's [amplitude][Amplitude].  
 
-**If you do now know what any of these terms mean then please watch the following reasources**:
+**If you do now know what any of these terms mean then please watch the following resources**:
 - Waveforms
 - Amplitude
 - Frequency 
@@ -366,7 +363,7 @@ static void AudioCallback(AudioHandle::InterleavingInputBuffer  in, AudioHandle:
 		1. The osc object creates a sine wave.  
 		2. The [sine][Sine] wave is played through the **left** speaker.  
 		3. The [sine][Sine] wave is played through the **right** speaker.  
-Now that we understand the code let's edit the code.
+Now that we understand the code lets edit the code.
 
 # Editing the Code:
 Now we will change the code to fit out needs. We need to change the pitch (known as [frequency][Frequency]) of the synth and the amplitude  
@@ -413,23 +410,105 @@ What this will do is decrease the volume of the waveform to half of what the wav
 ## Uploading the Code (Again)
 Finally let's upload the code to the [Daisy Seed][DaisySeed]. 
 
-- First make sure the file was been saved
-- Then type "make" into the terminal into VS Code
-- Verify that no errors occurred 
-- Connect the [Daisy Seed][DaisySeed] via micro USB
-- Hold the boot button and then click reset to let the daisy accept uploads.
-- Enter __"make program-dfu"__ into your terminal
-- Verify that no errors occurred
+1. First make sure the file was been saved
+2. Then type "make" into the terminal into VS Code
+3. Verify that no errors occurred 
+4. Connect the [Daisy Seed][DaisySeed] via micro USB
+5. Hold the boot button and then click reset to let the daisy accept uploads.
+6. Enter __"make program-dfu"__ into your terminal
+7. Verify that no errors occurred
 
 Now your Daisy should be playing a pitch one octave higher at half the original volume.
 
 # Part 4: Adding Hardware to the Daisy Seed
 
-Finally let's add a knob and a button so we can control the Daisy. We will set the knob to control the pitch of the Oscillator and a knob to control its amplitude. 
+Finally let's add a knob and a button so we can control the Daisy. We will set the knob to control the pitch of the Oscillator and a knob to control the Oscillator volume. 
 
+First we will have to create some code to get data from the knob and button. Then we will connect the hardware to the Daisy. 
 
+## Initialize the Knob:
+First let's create the code for the Knob. 
 
-## Adding Hardware in Code. 
+1. Create an AdcChannelConfig object called adcConfig.
+2. Add the line:
+
+	```Cpp
+	adcConfig.InitSingle(seed.GetPin(21));
+	```
+	* This will initialize pin 21 on the Daisy Seed. 
+	* This pin can be any GPIO pin on the Daisy, but we will be using pin 21. 
+3. Add the following line:
+
+	```Cpp
+	seed.adc.Init(&adcConfig, 1);
+	```
+	* This will now init the Daisy Seed Hardware with this new configuration. 
+4. Add this final line:
+
+	``` Cpp
+	seed.adc.Start();
+	```
+	
+- This will start up the Hardware for the Daisy. 
+
+**Your main function should now look like this:**
+
+```Cpp
+int main(void)
+{
+    // initialize seed hardware and oscillator daisysp module
+    float sample_rate;
+    seed.Configure();
+    seed.Init();
+
+	// Set Knob
+    AdcChannelConfig adcConfig;
+    adcConfig.InitSingle(seed.GetPin(21));
+    seed.adc.Init(&adcConfig, 1);
+    seed.adc.Start();
+
+	// Get sample rate and give it to Osc Object
+    sample_rate = seed.AudioSampleRate();
+    osc.Init(sample_rate);
+
+    // Set parameters for oscillator
+    osc.SetWaveform(osc.WAVE_SIN);
+    osc.SetFreq(440);
+    osc.SetAmp(0.5);
+
+    // start callback
+    seed.StartAudio(AudioCallback);
+
+    while(1) {}
+}
+```
+
+## Initialize the Button:
+Now let's add in the code for the button. 
+
+## Controlling the Oscillator Object with hardware:
+Finally let's configure the code to allow the Osc object to be controlled.
+
+1. For the Knob add these lines to the Audio Callback Function:
+
+	```Cpp
+	float knobOne = seed.adc.GetFloat(0);
+	osc.SetFreq(knobOne);
+	```
+	- This will get the current value of the knob and store it in a variable.
+	- The knob will then change the frequency of the Oscillator.  
+2. For the Button add these two lines:
+
+	```Cpp
+	float button = seed.adc.GetFloat(1);
+	osc.SetAmp(button);
+	```
+	
+	- This will get the value of the button and store it in a variable.
+	- The button then change the volume of the Oscillator depending on it's state. 
+
+## Adding the Hardware:
+
 
 
 TODO Next week
