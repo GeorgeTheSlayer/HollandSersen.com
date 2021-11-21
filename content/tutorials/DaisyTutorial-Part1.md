@@ -465,7 +465,6 @@ int main(void)
     AdcChannelConfig adcConfig;
     adcConfig.InitSingle(seed.GetPin(21));
     seed.adc.Init(&adcConfig, 1);
-    seed.adc.Start();
 
 	// Get sample rate and give it to Osc Object
     sample_rate = seed.AudioSampleRate();
@@ -477,6 +476,7 @@ int main(void)
     osc.SetAmp(0.5);
 
     // start callback
+    seed.adc.Start();
     seed.StartAudio(AudioCallback);
 
     while(1) {}
@@ -486,32 +486,124 @@ int main(void)
 ## Initialize the Button:
 Now let's add in the code for the button. 
 
+1. In your **main** function add this line:
+
+```Cpp
+button1.Init(seed.GetPin(28), 1000);
+```
+
+**Your main function should now look like this:**
+
+```Cpp
+int main(void)
+{
+    // initialize seed hardware and oscillator daisysp module
+    float sample_rate;
+    seed.Configure();
+    seed.Init();
+    
+	// Set button to pin 28, to be updated at a 1kHz  samplerate
+    button1.Init(seed.GetPin(28), 1000);
+
+	// Set Knob
+    AdcChannelConfig adcConfig;
+    adcConfig.InitSingle(seed.GetPin(21));
+    seed.adc.Init(&adcConfig, 1);
+
+	// Get sample rate and give it to Osc Object
+    sample_rate = seed.AudioSampleRate();
+    osc.Init(sample_rate);
+
+    // Set parameters for oscillator
+    osc.SetWaveform(osc.WAVE_SIN);
+    osc.SetFreq(440);
+    osc.SetAmp(0.5);
+
+    // start callback
+    seed.adc.Start();
+    seed.StartAudio(AudioCallback);
+
+    while(1) {}
+}
+```
+
 ## Controlling the Oscillator Object with hardware:
 Finally let's configure the code to allow the Osc object to be controlled.
 
 1. For the Knob add these lines to the Audio Callback Function:
 
 	```Cpp
-	float knobOne = seed.adc.GetFloat(0);
-	osc.SetFreq(knobOne);
+	float knob = seed.adc.GetFloat(0);
+	osc.SetFreq(knobOne * 440.0f + 440.0f);
 	```
 	- This will get the current value of the knob and store it in a variable.
 	- The knob will then change the frequency of the Oscillator.  
 2. For the Button add these two lines:
 
 	```Cpp
-	float button = seed.adc.GetFloat(1);
-	osc.SetAmp(button);
+	button1.Debounce();
+	osc.SetAmp(button1.Pressed());	
 	```
 	
 	- This will get the value of the button and store it in a variable.
-	- The button then change the volume of the Oscillator depending on it's state. 
+	- The button then change the volume of the Oscillator depending on it's state.  
+
+
+**The Audio Callback function should look like this:**
+
+```Cpp
+    float sig;
+    for(size_t i = 0; i < size; i += 2)
+    {
+        float knob = seed.adc.GetFloat(0);
+        osc.SetFreq((knob * 440.0f) + 440.0f);
+
+        button1.Debounce();
+        osc.SetAmp(button1.Pressed());
+
+        sig = osc.Process();
+
+        // left out
+        out[i] = sig;
+
+        // right out
+        out[i + 1] = sig;
+        
+    }
+```
+
+3. Now save the code
+4. Upload the code to the Daisy
 
 ## Adding the Hardware:
+Finally we can add the hardware to the daisy. If you want to know more about the circuits please look at these resources to find out more.
+
+## Knob Schematic:
+First let's add the Knob.
+
+1. Wire the first terminal to Ground
+2. Wire the middle terminal to pin 21
+3. Wire the last terminal to pin 38 
+
+This circuit will take in voltage and will change it depending on the position of the knob. 
+
+## Button Schematic:
+Now let's add the button.
+
+1. Wire one terminal to ground
+2. Wire the other terminal to Pin 28:
 
 
+Now the button should work.
 
-TODO Next week
+# Part 5: References
+Congratulations! You just created your first synthesizer!
+If you want to learn more about creating synthesizers, coding, and audio effects then here are some useful effects:
+- C++
+- Synthesizers 
+- Audio Effects
+- DSP
+- Circuits
 
 
 # References 
