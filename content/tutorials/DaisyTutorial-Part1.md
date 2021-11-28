@@ -1,13 +1,12 @@
 ---
 author: Holland
-title: Getting Started with the Electrosmith Daisy Seed Part 1
+title: Getting Started with the Electrosmith Daisy Seed
 date: 2021-10-07 12:46
 description: 
 ---
 
+![](/Img/CoolDaisyView.JPG)
 
-
-## Abstract
 The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipedia.org/wiki/Microprocessor) made for [embedded](https://en.wikipedia.org/wiki/Embedded_system) music applications. It allows for the rapid development of devices such as audio effects and synthesizers. 
  
  __This tutorial will go over how to setup your Daisy and create a simple synthesizer using VS Code__
@@ -18,39 +17,7 @@ The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipe
  - **Console Commands may be different on Windows.**
 
 
-## Table Of Contents (For Reference)
-
-- [Part 1: Overview](#part-1-overview)
-	- [What is the Electrosmith Daisy?](#what-is-the-electrosmith-daisy)
-	- [Prerequisites:](#prerequisites)
-- [Part 2: Uploading Example Code](#part-2-uploading-example-code)
-	- [Table of contents:](#table-of-contents)
-	- [Opening the Folder in VS Code](#opening-the-folder-in-vs-code)
-	- [Explaining the Code](#explaining-the-code)
-	- [Compiling the Code](#compiling-the-code)
-		- [One of Two Results Should Occur:](#one-of-two-results-should-occur)
-		- [If Neither of the Outputs Above Appear But This Does](#if-neither-of-the-outputs-above-appear-but-this-does)
-		- [If You Don't Get Any of These Then:](#if-you-dont-get-any-of-these-then)
-	- [Uploading Code To the Daisy Seed](#uploading-code-to-the-daisy-seed)
-	- [Setup Audio Out](#setup-audio-out)
-- [Part 3: Editing the Example Code](#part-3-editing-the-example-code)
-	- [Top of the File:](#top-of-the-file)
-	- [Main Function:](#main-function)
-		- [Seed Object:](#seed-object)
-		- [Sample Rate:](#sample-rate)
-		- [Oscillator Initialization and Default Params:](#oscillator-initialization-and-default-params)
-		- [Start Audio Callback:](#start-audio-callback)
-		- [Audio Callback](#audio-callback)
-- [Editing the Code:](#editing-the-code)
-	- [Change the Frequency:](#change-the-frequency)
-	- [Change the Amplitude](#change-the-amplitude)
-	- [Uploading the Code (Again)](#uploading-the-code-again)
-- [Part 4: Adding Hardware to the Daisy Seed](#part-4-adding-hardware-to-the-daisy-seed)
-	- [Adding Hardware in Code.](#adding-hardware-in-code)
-- [References](#references)
-
-# Part 1: Overview
-## What is the Electrosmith Daisy?
+# Part 1: What is the Electrosmith Daisy Seed?
 **The [Electrosmith Daisy][DaisySeed] is an embedded computer made specifically for audio applications.** 
 
 Pros:
@@ -66,7 +33,7 @@ This product is one of the best solutions for making music related projects, lik
 **I would not recommend this product for things that have nothing to do with audio.**   
 A good alternative would be the [Ardiuno Uno](https://store-usa.arduino.cc/products/arduino-uno-rev3?selectedStore=us) or [Rasberry Pi](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/). 
 
-## Prerequisites:
+# Prerequisites:
 Since this is for beginners the tutorials won't go into advanced [C++][Cpp] coding or hardware design. However, links for you to explore those topics on your own will be included in the description below.  
 This tutorial will not go into any [DSP][DSP] or physics however links will be provided to further knowledge on these subjects.   
 
@@ -85,12 +52,6 @@ For Hardware you will need:
 - [An Assortment of Wires](https://www.amazon.com/TUOFENG-Wire-Solid-different-colored-spools/dp/B07TX6BX47/ref=sr_1_8?dchild=1&keywords=breadboard+wires&qid=1634682429&sr=8-8). 
 
 # Part 2: Uploading Example Code
-## Table of contents:
-1. [Opening the Folder in VS Code](#opening-the-folder-in-vs-code)
-2. [Explaining the Code](#explaining-the-code)
-3. [Compiling the Code](#compiling-the-code)
-4. [Uploading Code To the Daisy Seed](#uploading-code-to-the-daisy-seed)
-5. [Setup Audio Out](#setup-audio-out) 
 
 ## Opening the Folder in VS Code
 
@@ -203,21 +164,24 @@ The terminal should show the erasing of old code and the new code being uploaded
 **Congrats!! You successfully uploaded code to your Daisy Microcontroller.**  
 
 ## Setup Audio Out
-TODO **Work on later, concentrate on getting working code.** 
+Now we need to get audio from the Daisy. We will do this by creating a simple circuit. For the pin numbers please refer to [this photo]()
 
-Now we need to get audio from the Daisy. We will do this by creating a simple circuit:
+![](/Img/DaisyAudioJack.JPG)
+
 1. Plug the Daisy Seed anywhere on your breadboard
-  - Make sure that all pins go into the breadboard fully.
+     - Make sure that all pins go into the breadboard fully.
 2. Plug the Aground pin into the "-" terminal.
 3. Plug the Dground pin into the "-" as well.
-  - This will insure the Daisy is grounded with the rest of our circuit. 
+     - This will insure the Daisy is grounded with the rest of our circuit. 
 4. Next get your audio jack.
 5. Identify which terminal is "tip"
-6. Connect tip to the "Audio Out 1 Pin" (TODO Add pictures and pin number)
+6. Connect tip to Pin 18.
+      - Pin 18 is where the right channel of the Daisy is outputted. 
 7. Identify which terminal is "Ring"
 8. Connect ring to the "-" terminal of the breadboard
+      - This will ground the audio jack, which will complete the circuit.  
 
-Now if you connect the Daisy Via Usb you should hear a simple sine wave coming from the device. 
+Now if you connect the Daisy Via Usb you should hear a simple sine wave coming from the device! 
 
 
 # Part 3: Editing the Example Code
@@ -434,20 +398,20 @@ First let's create the code for the Knob.
 
 	```Cpp
 	adcConfig.InitSingle(seed.GetPin(21));
-	```
-	* This will initialize pin 21 on the Daisy Seed. 
-	* This pin can be any GPIO pin on the Daisy, but we will be using pin 21. 
+	```  
+	- This will initialize pin 21 on the Daisy Seed. 
+	- This pin can be any GPIO pin on the Daisy, but we will be using pin 21. 
 3. Add the following line:
 
 	```Cpp
 	seed.adc.Init(&adcConfig, 1);
-	```
-	* This will now init the Daisy Seed Hardware with this new configuration. 
+	```  
+	- This will now init the Daisy Seed Hardware with this new configuration. 
 4. Add this final line:
 
 	``` Cpp
 	seed.adc.Start();
-	```
+	```  
 	
 - This will start up the Hardware for the Daisy. 
 
@@ -481,7 +445,7 @@ int main(void)
 
     while(1) {}
 }
-```
+```  
 
 ## Initialize the Button:
 Now let's add in the code for the button. 
@@ -490,7 +454,8 @@ Now let's add in the code for the button.
 
 ```Cpp
 button1.Init(seed.GetPin(28), 1000);
-```
+```  
+- This will make Pin 28 work with a button.
 
 **Your main function should now look like this:**
 
@@ -525,7 +490,7 @@ int main(void)
 
     while(1) {}
 }
-```
+```  
 
 ## Controlling the Oscillator Object with hardware:
 Finally let's configure the code to allow the Osc object to be controlled.
@@ -535,15 +500,17 @@ Finally let's configure the code to allow the Osc object to be controlled.
 	```Cpp
 	float knob = seed.adc.GetFloat(0);
 	osc.SetFreq(knobOne * 440.0f + 440.0f);
-	```
-	- This will get the current value of the knob and store it in a variable.
-	- The knob will then change the frequency of the Oscillator.  
+	```  
+
+   	- This will get the current value of the knob and store it in a variable.
+   	- The knob will then change the frequency of the Oscillator. 
+   
 2. For the Button add these two lines:
 
 	```Cpp
 	button1.Debounce();
 	osc.SetAmp(button1.Pressed());	
-	```
+	```  
 	
 	- This will get the value of the button and store it in a variable.
 	- The button then change the volume of the Oscillator depending on it's state.  
@@ -570,31 +537,34 @@ Finally let's configure the code to allow the Osc object to be controlled.
         out[i + 1] = sig;
         
     }
-```
-
+```  
 3. Now save the code
 4. Upload the code to the Daisy
 
 ## Adding the Hardware:
 Finally we can add the hardware to the daisy. If you want to know more about the circuits please look at these resources to find out more.
 
+
+## Button Schematic:
+First let's add the Button:
+
+![](/Img/DaisyButton.JPG)
+
+1. Wire one terminal to ground
+2. Wire the other terminal to Pin 28
+   
+Now when the button is pressed the Daisy will be able to detect it. 
+
 ## Knob Schematic:
-First let's add the Knob.
+Now let's add the Knob:
+
+![](/Img/DaisyKnob.JPG)
 
 1. Wire the first terminal to Ground
 2. Wire the middle terminal to pin 21
 3. Wire the last terminal to pin 38 
 
 This circuit will take in voltage and will change it depending on the position of the knob. 
-
-## Button Schematic:
-Now let's add the button.
-
-1. Wire one terminal to ground
-2. Wire the other terminal to Pin 28:
-
-
-Now the button should work.
 
 # Part 5: References
 Congratulations! You just created your first synthesizer!
