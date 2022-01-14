@@ -5,7 +5,8 @@ date: 2021-10-07 12:46
 description: 
 ---
 
-![](/Img/CoolDaisyView.JPG)
+{{< youtube O0Yn7aVnvYo >}}  
+
 
 The [Electrosmith Daisy Seed][DaisySeed] is a [microprocessor](https://en.wikipedia.org/wiki/Microprocessor) made for [embedded](https://en.wikipedia.org/wiki/Embedded_system) music applications. It allows for the rapid development of devices such as audio effects and synthesizers. 
  
@@ -58,7 +59,7 @@ For Hardware you will need:
 ![Folder](/Img/FolderShot.png)
 
 1. Open VS Code.
-2. Click on File -> Open.
+2. Click on File -> Open Folder.
 3. Find the Daisy Examples Folder on your computer. 
 4. Click on the Folder Seed -> Oscillator
 5. Open the Folder.
@@ -450,7 +451,14 @@ int main(void)
 ## Initialize the Button:
 Now let's add in the code for the button. 
 
-1. In your **main** function add this line:
+1. At the top of the file add this:
+   
+```Cpp
+Switch button1;
+```
+- This will create the button object.
+
+2. In your **main** function add this line:
 
 ```Cpp
 button1.Init(seed.GetPin(28), 1000);
@@ -544,6 +552,8 @@ Finally let's configure the code to allow the Osc object to be controlled.
 ## Adding the Hardware:
 Finally we can add the hardware to the daisy. If you want to know more about the circuits please look at these resources to find out more.
 
+For this section we will be using the Daisy Pin Numbers located [here.](https://images.squarespace-cdn.com/content/v1/58d03fdc1b10e3bf442567b8/1619048775494-02C4T0H8KK3VJRIP7H8E/DaisyPinoutRev4%404x.png?format=750w)
+
 
 ## Button Schematic:
 First let's add the Button:
@@ -561,8 +571,8 @@ Now let's add the Knob:
 ![](/Img/DaisyKnob.JPG)
 
 1. Wire the first terminal to Ground
-2. Wire the middle terminal to pin 21
-3. Wire the last terminal to pin 38 
+2. Wire the middle terminal to Pin 21
+3. Wire the last terminal to Pin 38 
 
 This circuit will take in voltage and will change it depending on the position of the knob. 
 
@@ -576,7 +586,7 @@ If you want to learn more about creating synthesizers, coding, and audio effects
 - Circuits
 
 
-# References 
+
 [Cpp]: https://en.wikipedia.org/wiki/C%2B%2B
 [DSP]: https://en.wikipedia.org/wiki/Digital_signal_processing
 [DaisyWIKI]: https://github.com/electro-smith/DaisyWiki/wiki
