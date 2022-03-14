@@ -14,7 +14,7 @@ menu:
     title: about
     url: /about/
     weight: 2
-  - indentifier: projects
+  - identifier: projects
     name: Projects
     title: projects
     url: /projects/
