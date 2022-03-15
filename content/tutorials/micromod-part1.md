@@ -1,14 +1,11 @@
 ---
 author: Holland Mark Sersen
-title: Project First, Name Second. Synth Block Part One
+title: Project First, Name Second. Synth Block Project Part 1
 date: 2022-03-07 12:46
 description: 
 draft: false
 ---
 
-# Project First, Name Second. 
-# Synth Block Project Part One
-## Introduction
 
 The Micro Mod Synth would allow for people to learn more about audio in a fun and gamified way. By taking the building blocks of modular synthesis and making them less expensive and complex people would be able to explore and interact with sounds in ways they have never been able to before. This would be an opportunity for children K-8 to explore a passion in sound synthesis. 
 
@@ -26,7 +23,6 @@ The Micro Mod can be split off into two parts, connectable controllers and the a
 The Micro Mod allows the user to mix a unique sound. The user gets the chance to combine different elements in different orders to change and create new sounds within the system. Mixing and matching different color and symbol pieces allowing for 16 variations of sound. Within these 16 sound variations, the user can manipulate the sound modulation by twisting one of four play boards. These will be processed through the audio processor playing what the user has created. 
 
 There will be two play modes with a switch on the audio processor. The first would be FreePlay giving the user control over different sound combinations. The seconds would be DJ Mode where the game gives a building series of actions to follow where the user learns how to replicate sounds on the controllers. 
-
 
 ### Controller
 
