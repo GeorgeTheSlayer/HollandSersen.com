@@ -1,11 +1,13 @@
 ---
 author: Holland Mark Sersen
-title: Project First, Name Second. Synth Block Project Part 1
+title: Project First, Name Second - Synth Block Project Part 1
 date: 2022-03-07 12:46
 description: 
 draft: false
 ---
 
+## Introduction
+This post will go into the first steps in my latest project, a synthesizer meant to introduce people into the world of audio, code named "Micro Mod" (for now).
 
 The Micro Mod Synth would allow for people to learn more about audio in a fun and gamified way. By taking the building blocks of modular synthesis and making them less expensive and complex people would be able to explore and interact with sounds in ways they have never been able to before. This would be an opportunity for children K-8 to explore a passion in sound synthesis. 
 
