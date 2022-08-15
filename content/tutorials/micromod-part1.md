@@ -1,6 +1,5 @@
 ---
 author: Holland Mark Sersen
-title: Project First, Name Second - Synth Block Project Part 1
 date: 2022-03-07 12:46
 description: 
 draft: false
