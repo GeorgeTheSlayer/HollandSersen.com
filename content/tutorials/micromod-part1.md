@@ -1,8 +1,9 @@
 ---
 author: Holland Mark Sersen
 date: 2022-03-07 12:46
+title: Simple Synth Draft
 description: 
-draft: false
+draft: true
 ---
 
 ## Introduction
